@@ -22,9 +22,9 @@ export default function Question() {
   })
 
   function handleAdd() {
-    if (!!question) {
+    if (question) {
       addQuestion({
-        author: !!author ? author: undefined,
+        author: author ? author: undefined,
         type,
         question
       })

@@ -12,11 +12,11 @@ app.use(cors())
 app.use(express.json())
 
 app.post("/questions", (req, res) => {
-	if (!!req.body.question && !!req.body.type && questionType.includes(req.body.type)) {
+	if (req.body.question && req.body.type && questionType.includes(req.body.type)) {
 		bdd.Question.create({
 			question: req.body.question,
 			type: req.body.type,
-			author: !!req.body.author ? req.body.author : null
+			author: req.body.author ?? null
 		}).then(question => {
 			res.json(question)
 		})
@@ -38,7 +38,7 @@ app.get("/questions/:id", (req, res) => {
 })
 
 app.post("/questions/:id/answer", (req, res) => {
-	if (!!req.body.answer) {
+	if (req.body.answer) {
 		bdd.Question.findOne({id: req.params.id, include: bdd.Answer}).then(question => {
 			if (question != null) {
 				if (question.Answer === null) {

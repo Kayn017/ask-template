@@ -3,6 +3,7 @@ import Spinner from "react-bootstrap/Spinner"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 
+import React from "react"
 import { useQuery } from "react-query"
 import api from "../api"
 import { dateToString } from "../utils"

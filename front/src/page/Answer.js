@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import Container from "react-bootstrap/Container"
 import Spinner from "react-bootstrap/Spinner"
 import Form from "react-bootstrap/Form"
@@ -18,13 +18,13 @@ export default function Answer() {
 
   const {data: question, isLoading} = useQuery(["questions", id], () => api.questions.getOne(id))
   const {mutate: addAnswer} = useMutation(api.questions.answer, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       history.push("/")
     }
   })
 
   function handleAnswer() {
-    if (!!answer) {
+    if (answer) {
       addAnswer({id: id, body: {answer}})
     }
   }
