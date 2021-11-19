@@ -9,9 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
-      - run: cd front
       - name: Installation des dépendances
-        run: yarn
+        run: yarn --cwd ./front
       - name: Lintage
-        run: eslint . --ext .js
+        run: eslint ./front --ext .js
 
