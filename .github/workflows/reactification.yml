@@ -1,0 +1,26 @@
+name: Build React
+
+on:
+  push:
+    branches: [ main ]
+  pull_request: 
+    branches: [ main ]
+
+jobs:
+  front:
+    defaults:
+      run:
+        working-directory: ./front
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installation de dépendances
+        run: yarn install
+      - name: Build...
+        run: yarn build
