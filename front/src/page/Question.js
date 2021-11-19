@@ -1,4 +1,4 @@
-import {useState } from "react"
+import React, { useState } from "react"
 
 import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
@@ -16,7 +16,7 @@ export default function Question() {
   const [question, setQuestion] = useState("")
 
   const {mutate: addQuestion} = useMutation(api.questions.addQuestion, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       history.push("/")
     }
   })

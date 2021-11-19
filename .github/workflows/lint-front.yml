@@ -5,7 +5,7 @@ on:
   branches: [main]
 
 jobs:
-  Ca-lint-a-balle-par-chez-vous:
+  Ca-lint-a-balle-par-chez-vous-en-front:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
@@ -13,4 +13,11 @@ jobs:
         run: yarn --cwd ./front
       - name: Lintage
         run: yarn --cwd ./front eslint . --ext .js
-
+  Ca-lint-a-balle-par-chez-vous-en-back:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Installation des dépendances
+        run: yarn --cwd ./back
+      - name: Lintage
+        run: yarn --cwd ./front eslint . --ext .js
