@@ -6,6 +6,9 @@ on:
 
 jobs:
   je-dock:
+    defaults:
+      run:
+        working-directory: ./back
     runs-on: ubuntu-latest
     steps:
       - name: Ca setup le build
@@ -19,9 +22,8 @@ jobs:
       - name: Ca build et ca push
         id: docker_build
         uses: docker/build-push-action@v2
-        working-directory: ./back
         with:
           push: true
-          tags: kayn017/back:latest
+          tags: ${{ github.actor }}/back:latest
         
 
