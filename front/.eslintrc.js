@@ -208,7 +208,6 @@ module.exports = {
         ],
         "no-unreachable-loop": "error",
         "no-unused-expressions": "error",
-        "no-unused-private-class-members": "error",
         "no-use-before-define": "off",
         "no-useless-call": "error",
         "no-useless-computed-key": "error",
