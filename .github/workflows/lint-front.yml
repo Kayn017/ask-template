@@ -1,0 +1,16 @@
+name: Ca lint à balle par chez vous
+
+on:
+ push:
+  branches: [main]
+
+jobs:
+  Ca-lint-à-balle-par-chez-vous:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Installation des dépendances
+        run: yarn
+      - name: Lintage
+        run: eslint . --ext .js
+
