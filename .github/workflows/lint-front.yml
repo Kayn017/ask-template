@@ -5,7 +5,7 @@ on:
   branches: [main]
 
 jobs:
-  Ca-lint-à-balle-par-chez-vous:
+  Ca-lint-a-balle-par-chez-vous:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
