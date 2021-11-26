@@ -3,7 +3,7 @@ name: Build React
 on:
   push:
     branches: [ main ]
-  pull_request: 
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -14,13 +14,21 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: write
-    
     steps:
-      - uses: actions/checkout@v2
-      - name: Installation de dépendances
-        run: yarn install --production
-      - name: Build...
-        run: yarn build
+    - uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - run: yarn
+    - run: yarn build
+    - name: Create SSH
+      run: mkdir ~/.ssh
+    - name: Install SSH Key
+      run: echo "${{ secrets.SERVER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+    - name: Setup Perm
+      run: chmod 600 ~/.ssh/id_rsa
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H -p 22 ${{ secrets.SERVER_NAME }} >> ~/.ssh/known_hosts
+    - name: Deploy with rsync
+      run: rsync -avz -e 'ssh -p 22 -i ~/.ssh/id_rsa' ./build/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_NAME }}:/home/ls1/build/
