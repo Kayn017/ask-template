@@ -1,0 +1,15 @@
+name: Test ping
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  front:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: ping -6 ${{ secrets.SERVER_NAME }}
+    - run: ping ${{ secrets.SERVER_NAME }}
